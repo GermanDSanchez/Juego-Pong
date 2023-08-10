@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LeftComponent } from './Pong/left/left.component';
 import { RightComponent } from './Pong/right/right.component';
-import { ArrowLeftComponent } from './components/arrow-left/arrow-left.component';
-import { ArrowRightComponent } from './components/arrow-right/arrow-right.component';
+import { ArrowLeftComponent } from 'src/assets/svgs/arrow-left/arrow-left.component';
+import { ArrowRightComponent } from 'src/assets/svgs/arrow-right/arrow-right.component';
 
 @NgModule({
   declarations: [
