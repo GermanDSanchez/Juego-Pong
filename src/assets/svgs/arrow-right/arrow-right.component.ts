@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-arrow-right',
   templateUrl: './arrow-right.component.html',
 })
-export class ArrowRightComponent {
-
-}
+export class ArrowRightComponent {}

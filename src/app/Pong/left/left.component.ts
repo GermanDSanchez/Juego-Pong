@@ -1,15 +1,19 @@
-import { Component, EventEmitter, HostListener, OnDestroy, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  OnDestroy,
+  Output,
+} from '@angular/core';
 import { Player } from 'src/app/app.component';
 
 @Component({
   selector: 'app-left',
-  templateUrl: './left.component.html'
+  templateUrl: './left.component.html',
 })
-
 export class LeftComponent implements OnDestroy {
-
   @Output()
-  public onMovePlayerLeft: EventEmitter<Player> = new EventEmitter();
+  public MovePlayerLeft: EventEmitter<Player> = new EventEmitter();
 
   public playerLeft: Player = new Player(301, 0, 112);
 
@@ -35,25 +39,24 @@ export class LeftComponent implements OnDestroy {
     if (this.keysPressed['s']) {
       this.playerLeft.move += 10;
       this.playerLeft.move = Math.min(600, this.playerLeft.move);
-      this.onMovePlayerLeft.emit(this.playerLeft);
-    }
-    else if (this.keysPressed['w']) {
+      this.MovePlayerLeft.emit(this.playerLeft);
+    } else if (this.keysPressed['w']) {
       this.playerLeft.move -= 10;
       this.playerLeft.move = Math.max(10, this.playerLeft.move);
-      this.onMovePlayerLeft.emit(this.playerLeft);
-    }
-    else if (this.keysPressed['S']) {
+      this.MovePlayerLeft.emit(this.playerLeft);
+    } else if (this.keysPressed['S']) {
       this.playerLeft.move += 10;
       this.playerLeft.move = Math.min(600, this.playerLeft.move);
-      this.onMovePlayerLeft.emit(this.playerLeft);
-    }
-    else if (this.keysPressed['W']) {
+      this.MovePlayerLeft.emit(this.playerLeft);
+    } else if (this.keysPressed['W']) {
       this.playerLeft.move -= 10;
       this.playerLeft.move = Math.max(10, this.playerLeft.move);
-      this.onMovePlayerLeft.emit(this.playerLeft);
+      this.MovePlayerLeft.emit(this.playerLeft);
     }
 
-    this.animationFrameId = requestAnimationFrame(() => this.updatePlayersMovement());
+    this.animationFrameId = requestAnimationFrame(() =>
+      this.updatePlayersMovement()
+    );
   }
 
   stopPlayersMovement(): void {

@@ -6,10 +6,10 @@
   <div class="w-[1450px] h-[730px] bg-black relative flex border-8">
     <div class="relative w-1/2 h-full border-r-8 border-dashed">
       <div *ngIf="arrow.left" class="absolute z-10 text-[15rem] top-[240px] left-52"><app-arrow-left /></div>
-      <app-left (onMovePlayerLeft)="onMovePlayerLeft($event)"></app-left>
+      <app-left (MovePlayerLeft)="onMovePlayerLeft($event)"></app-left>
     </div>
     <div class="relative w-1/2 h-full border-l-8 border-dashed">
-      <app-right (onMovePlayerRight)="onMovePlayerRight($event)"></app-right>
+      <app-right (MovePlayerRight)="onMovePlayerRight($event)"></app-right>
       <div *ngIf="arrow.right" class="absolute z-10 text-[15rem] top-[240px] left-52"><app-arrow-right /></div>
     </div>
     <div class="absolute w-6 h-6 rounded-full bg-yellow-600" [ngStyle]="{ top: ball.top + 'px', left: ball.left + 'px' }"></div>

@@ -1,4 +1,10 @@
-import { Component, HostListener, OnDestroy, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Player } from 'src/app/app.component';
 
 @Component({
@@ -6,9 +12,8 @@ import { Player } from 'src/app/app.component';
   templateUrl: './right.component.html',
 })
 export class RightComponent implements OnDestroy {
-
   @Output()
-  public onMovePlayerRight: EventEmitter<Player> = new EventEmitter();
+  public MovePlayerRight: EventEmitter<Player> = new EventEmitter();
 
   public playerRight: Player = new Player(301, 0, 112);
 
@@ -34,16 +39,16 @@ export class RightComponent implements OnDestroy {
     if (this.keysPressed['ArrowDown']) {
       this.playerRight.move += 10;
       this.playerRight.move = Math.min(600, this.playerRight.move);
-      this.onMovePlayerRight.emit(this.playerRight);
-    }
-
-    else if (this.keysPressed['ArrowUp']) {
+      this.MovePlayerRight.emit(this.playerRight);
+    } else if (this.keysPressed['ArrowUp']) {
       this.playerRight.move -= 10;
       this.playerRight.move = Math.max(10, this.playerRight.move);
-      this.onMovePlayerRight.emit(this.playerRight);
+      this.MovePlayerRight.emit(this.playerRight);
     }
 
-    this.animationFrameId = requestAnimationFrame(() => this.updatePlayersMovement());
+    this.animationFrameId = requestAnimationFrame(() =>
+      this.updatePlayersMovement()
+    );
   }
 
   stopPlayersMovement(): void {
