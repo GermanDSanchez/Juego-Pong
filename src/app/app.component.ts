@@ -1,38 +1,37 @@
 import { Component } from '@angular/core';
-import { Der, Izq, Ball, Winner, Arrow } from './app.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  public playerLeft: Player = { move: 294, points: 0, height: 0 };
+  public playerLeft = { move: 294, points: 0, height: 0 };
 
-  public playerRight: Player = { move: 294, points: 0, height: 0 };
+  public playerRight = { move: 294, points: 0, height: 0 };
 
-  public ballState: number = 3;
+  public ballState = 3;
 
-  public ballDirection: number = 1;
+  public ballDirection = 1;
 
-  public point: boolean = true;
+  public point = true;
 
-  public buttonPlay: boolean = true;
+  public buttonPlay = true;
 
-  public arrow: Arrow = { left: false, right: false };
+  public arrow = { left: false, right: false };
 
-  public winner: Winner = { left: false, right: false };
+  public winner = { left: false, right: false };
 
-  public ball: Ball = { top: 350, left: 708 };
+  public ball = { top: 346, left: 705 };
 
-  onMovePlayerLeft(player: Player): void {
+  onMovePlayerLeft(player: Player) {
     this.playerLeft = player;
   }
 
-  onMovePlayerRight(player: Player): void {
+  onMovePlayerRight(player: Player) {
     this.playerRight = player;
   }
 
-  play(): void {
+  play() {
     this.buttonPlay = false;
     if (this.ballDirection === 1) {
       this.arrow.right = true;
@@ -56,21 +55,23 @@ export class AppComponent {
       this.playerLeft.points++;
       this.ballDirection = 1;
       this.ballState = 3;
-      this.ball = { top: 350, left: 698 };
+      this.ball = { top: 346, left: 695 };
       this.point = false;
       if (this.playerLeft.points === 10) {
         this.winner.left = true;
       }
-      setTimeout(() => {
-        this.point = true;
-        this.arrow.right = false;
-      }, 3000);
+      else {
+        setTimeout(() => {
+          this.point = true;
+          this.arrow.right = false;
+        }, 3000);
+      }
     } else if (this.ball.left <= 0) {
       this.arrow.left = true;
       this.playerRight.points++;
       this.ballDirection = 2;
       this.ballState = 6;
-      this.ball = { top: 350, left: 718 };
+      this.ball = { top: 346, left: 715 };
       this.point = false;
       if (this.playerRight.points === 10) {
         this.winner.right = true;
@@ -130,23 +131,21 @@ export class AppComponent {
   }
 
   checkStateBall() {
-    const player1Collision: Der = this.touchPlayerLeft();
     const {
       derArriba,
       derCentro,
       derAbajo,
       derMedioAbajo,
       derMedioArriba,
-    }: Der = player1Collision;
+    } = this.touchPlayerLeft();
 
-    const player2Collision: Izq = this.touchPlayerRight();
     const {
       izqArriba,
       izqCentro,
       izqAbajo,
       izqMedioAbajo,
       izqMedioArriba,
-    }: Izq = player2Collision;
+    } = this.touchPlayerRight();
 
     if (this.touchPlayerLeft()) {
       if (derArriba) {
@@ -204,11 +203,11 @@ export class AppComponent {
   }
 
   touchPlayerLeft() {
-    let derArriba: boolean = false;
-    let derCentro: boolean = false;
-    let derAbajo: boolean = false;
-    let derMedioAbajo: boolean = false;
-    let derMedioArriba: boolean = false;
+    let derArriba = false;
+    let derCentro = false;
+    let derAbajo = false;
+    let derMedioAbajo = false;
+    let derMedioArriba = false;
 
     if (
       this.ball.left <= 38 &&
@@ -243,20 +242,20 @@ export class AppComponent {
     }
 
     return {
-      derArriba: derArriba,
-      derCentro: derCentro,
-      derAbajo: derAbajo,
-      derMedioAbajo: derMedioAbajo,
-      derMedioArriba: derMedioArriba,
+      derArriba,
+      derCentro,
+      derAbajo,
+      derMedioAbajo,
+      derMedioArriba
     };
   }
 
   touchPlayerRight() {
-    let izqArriba: boolean = false;
-    let izqCentro: boolean = false;
-    let izqAbajo: boolean = false;
-    let izqMedioAbajo: boolean = false;
-    let izqMedioArriba: boolean = false;
+    let izqArriba = false;
+    let izqCentro = false;
+    let izqAbajo = false;
+    let izqMedioAbajo = false;
+    let izqMedioArriba = false;
 
     if (
       this.ball.left >= 1370 &&
@@ -291,11 +290,11 @@ export class AppComponent {
     }
 
     return {
-      izqArriba: izqArriba,
-      izqCentro: izqCentro,
-      izqAbajo: izqAbajo,
-      izqMedioAbajo: izqMedioAbajo,
-      izqMedioArriba: izqMedioArriba,
+      izqArriba,
+      izqCentro,
+      izqAbajo,
+      izqMedioAbajo,
+      izqMedioArriba
     };
   }
 }
